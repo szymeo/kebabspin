@@ -172,12 +172,17 @@
 	</div>
 	<div class="content">
 <script type="text/javascript">
-var angle = 0;
+var totalDeg = 0;
 var $image = $("#image");
 
 function rotateStep() {
-	angle = (angle + 1) % 360;
-	$image.css('transform', 'rotate(' + angle + 'deg)');
+	totalDeg++;
+	$image.css('transform', 'rotate(' + (totalDeg % 360) + 'deg)');
+
+	if (totalDeg % 360 === 0) {
+		rotation();
+	}
+
 	requestAnimationFrame(rotateStep);
 }
 
@@ -216,7 +221,6 @@ var rotation = function () {
 rotation.calledTimes = 0;
 $('.results').html("ILOŚĆ OBROTÓW KEBABA 0");
 rotateStep();
-setInterval(rotation, 30000);
 </script>
 
 </div>
